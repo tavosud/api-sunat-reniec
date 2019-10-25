@@ -4,7 +4,7 @@ Api hecho en Slim Framework, muestra datos de sunat mediante ruc, datos de renie
 *Se acopló modulo de Sunat de JossMP (https://github.com/JossMP/sunatphp) y se modifico para integracion.
 
 # Ejemplo Reniec:
-http://localhost/api-sunat-reniec/public/jne/33562458
+http://localhost/api-sunat-reniec/public/reniec/33562458
 
 # Ejemplo Sunat:
 http://localhost/api-sunat-reniec/public/sunat/10335624586
