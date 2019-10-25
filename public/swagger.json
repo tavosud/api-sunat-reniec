@@ -1,0 +1,241 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a api rest server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
+        "version": "1.0.0",
+        "title": "Api Rest gData",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "gustavocuyutupa@gmail.com"
+        }
+    },
+    "host": "localhost",
+    "basePath": "/api-sunat/public",
+    "tags": [
+        {
+            "name": "Reniec",
+            "description": "Busqueda de datos por DNI"
+        },
+        {
+            "name": "Sunat",
+            "description": "Busqueda de datos por RUC"
+        },
+        {
+            "name": "Divisa",
+            "description": "dato monetario segun SUNAT"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/reniec/{dni}": {
+            "get": {
+                "tags": [
+                    "Reniec"
+                ],
+                "summary": "busqueda de datos mediante DNI",
+                "description": "Retorna datos personales",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "dni",
+                        "in": "path",
+                        "description": "dni del ciudadano",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/reniec"
+                        }
+                    }
+                }
+            }
+        },
+        "/sunat/{ruc}": {
+            "get": {
+                "tags": [
+                    "Sunat"
+                ],
+                "summary": "busqueda de datos mediante Sunat",
+                "description": "Retorna datos empresariales",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ruc",
+                        "in": "path",
+                        "description": "RUC de la empresa",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/sunat"
+                        }
+                    }
+                }
+            }
+        },
+        "/tipocambio/{dia}/{mes}/{anho}": {
+            "get": {
+                "tags": [
+                    "Divisa"
+                ],
+                "summary": "muestra divisa dolares Sunat",
+                "description": "Retorna compra venta del dia",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "dia",
+                        "in": "path",
+                        "description": "dia",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "mes",
+                        "in": "path",
+                        "description": "mes",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "anho",
+                        "in": "path",
+                        "description": "anho",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/divisa"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "reniec": {
+            "type": "object",
+            "required": [
+                "dni"
+            ],
+            "properties": {
+                "ape_pat": {
+                    "type": "string"
+                },
+                "ape_mat": {
+                    "type": "string"
+                },
+                "nombres": {
+                    "type": "string"
+                }
+            }
+        },
+        "divisa": {
+            "type": "object",
+            "required": [
+                "dia",
+                "mes",
+                "anho"
+            ],
+            "properties": {
+                "compra": {
+                    "type": "number"
+                },
+                "venta": {
+                    "type": "number"
+                }
+            }
+        },
+        "sunat": {
+            "type": "object",
+            "required": [
+                "ruc"
+            ],
+            "properties": {
+                "ruc": {
+                    "type": "string"
+                },
+                "razon_social": {
+                    "type": "string"
+                },
+                "condicion": {
+                    "type": "string"
+                },
+                "nombre_comercial": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "fecha_inscripcion": {
+                    "type": "string"
+                },
+                "estado": {
+                    "type": "string"
+                },
+                "direccion": {
+                    "type": "string"
+                },
+                "sistema_emision": {
+                    "type": "string"
+                },
+                "actividad_exterior": {
+                    "type": "string"
+                },
+                "sistema_contabilidad": {
+                    "type": "string"
+                },
+                "oficio": {
+                    "type": "string"
+                },
+                "emision_electronica": {
+                    "type": "string"
+                },
+                "ple": {
+                    "type": "string"
+                },
+                "representantes_legales": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items" : {
+                            "type": "string"
+                        }
+                    }
+                },
+                "cantidad_trabajadores": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items" : {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}
